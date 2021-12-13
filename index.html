@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Calculadora IMC</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body{
+			background-color: magenta;
+		}
+
+		.main{
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%,-50%);
+			border: 1px solid white;
+			text-align: center;
+			padding: 25px 20px;
+
+		}
+
+		.box-text{
+			width: 100%;
+			height: 100px;
+			background-color: rgba(255,255,255,0.3);
+			color: white;
+			padding: 10px;
+			resize: none;
+			border: 0;
+			outline: none;
+		}
+
+		.style-box{
+			width: 100%;
+			height: 40px;
+			outline: none;
+			padding-left: 10px;
+			border-top: 0;
+			border-left: 0;
+			border-right: 0;
+			border-bottom: 1px solid white;
+			background: none;
+			color: white;
+
+		}
+
+		.style-box::placeholder{
+			color: white;
+		}
+
+		h2{
+			margin: 15px;
+			border-bottom: 1px solid white;
+			color: white;
+		}
+
+		.bot{
+			width: 70%;
+			height: 30px;
+			color: white;
+			font-size: 18px;
+			background: none;
+			border: 1px solid white;
+			cursor: pointer;
+		}
+
+		.bot:hover{
+			background-color: rgba(255,255,255,0.4);
+			
+		}
+	</style>
+</head>
+<body>
+	<div class="main">
+		<h2>Calculando o IMC:</h2>
+		<input id="name" class="style-box" type="text" name="nome" placeholder="Digite seu nome...">
+	</br></br>
+		<input id="alt" class="style-box" type="number" name="altura" placeholder="Digite sua altura...">
+	</br></br>
+		<input id="pes" class="style-box" type="number" name="peso" placeholder="Digite seu peso...">
+	</br></br>
+		<input id="calcular" class="bot" onclick="calc()" type="submit" name="acao" value="Calcular">
+	</br></br>
+		<textarea id="boxT" class="box-text"></textarea>
+
+		
+	</div>
+
+<script>
+	function calc(){
+		var nameUser = document.getElementById('name').value;
+		console.log(nameUser);
+
+		var altura = document.getElementById('alt').value;
+		var peso = document.getElementById('pes').value;
+
+		
+		var result = (peso/(altura * altura)).toFixed(2);
+		console.log(result);
+
+	if(nameUser !== '' && altura !== '' && peso !== ''){
+
+		if(result < 18.5){
+			document.getElementById('boxT').innerHTML = nameUser +' seu IMC é '+ result +', e você está abaixo do peso.';
+		
+		}else if(result < 24.9){
+			document.getElementById('boxT').innerHTML = nameUser +' seu IMC é '+ result +', parabéns você está no peso ideal!!!.';
+		
+		}else if(result < 30){
+			document.getElementById('boxT').innerHTML = nameUser +' seu IMC é '+ result +', tome cuidado o peso ideal é entre 18,5 e 24.9.';
+	
+		}else if(result > 30){
+			document.getElementById('boxT').innerHTML = nameUser +' seu IMC é '+ result +', e você está na área de risco ,ou seja, acima do peso.';
+		}
+
+	}else{
+		alert('Atenção!!! preencha todos os campos.')
+	}
+}
+
+</script>
+</body>
+</html>
